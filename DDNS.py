@@ -7,11 +7,17 @@ from aliyunsdkcore.client import CommonRequest
 import mAcsClient
 import time
 import configparser
+import os
 
 def DDNS():
+    #获取环境变量
+    env_list=os.environ
+    for key in env_list:
+        print(key+"#######"+env_list[key])
     #读取配置文件
     cf = configparser.ConfigParser();
-    cf.read('config.conf')
+    #cf.read('config.conf')
+    cf.read(env_list['DDNS']+'/config.conf')
     DnsName=cf.get('dns','dns_name')
     Type=cf.get('dns','type')
     # 工具
