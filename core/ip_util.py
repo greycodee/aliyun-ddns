@@ -3,8 +3,8 @@
 import json
 
 import requests
-import re
 import hashlib
+from .run_exception import RunTimeException
 
 
 # 获取腾讯位置 api 返回的 ip
@@ -18,5 +18,5 @@ def get_ip_with_tencent_lbs(lbs_key, sk):
     if json_obj['status'] == 0:
         return json_obj['result']['ip']
     else:
-        raise Exception("获取IP失败，原因："+json_obj['message'])
+        raise RunTimeException("获取IP失败，原因："+json_obj['message'])
 

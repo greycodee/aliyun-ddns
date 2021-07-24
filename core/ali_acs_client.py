@@ -5,17 +5,19 @@ import json
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.client import CommonRequest
 
+from .run_exception import RunTimeException
+
 
 class AliAcsClient(object):
     acs_clients = None
 
     def __init__(self, ali_access_key_id=None, ali_access_key_secret=None, ali_region_id=None):
         if ali_access_key_id == '' or ali_access_key_id is None:
-            raise Exception("ali_access_key_id is Blank")
+            raise RunTimeException("ali_access_key_id is Blank")
         if ali_access_key_secret == '' or ali_access_key_secret is None:
-            raise Exception("ali_access_key_secret is Blank")
+            raise RunTimeException("ali_access_key_secret is Blank")
         if ali_region_id == '' or ali_region_id is None:
-            raise Exception("ali_region_id is Blank")
+            raise RunTimeException("ali_region_id is Blank")
         self.acs_clients = AcsClient(ali_access_key_id, ali_access_key_secret, ali_region_id)
 
     # DescribeDomainRecords
