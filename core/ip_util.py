@@ -1,19 +1,12 @@
 #! /usr/bin/env python3
 # coding:utf-8
-
-from core import describe_domains
 import requests
 import re
 
 
 # 获取Ip
-def get_ip():
+def get_public_ip():
     return get_ip_138()
-
-
-# 获取RecodeID
-def get_record_ip(dns_name):
-    return describe_domains.get_record_ip(dns_name)
 
 
 def get_ip_138():
