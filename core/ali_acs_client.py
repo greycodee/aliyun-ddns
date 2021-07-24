@@ -15,7 +15,7 @@ def acs_client():
 
 
 # 获取RecodeId
-def get_record_ip(dns_name):
+def get_record_id(dns_name):
     client = acs_client()
     request = CommonRequest()
     request.set_domain('alidns.aliyuncs.com')
@@ -34,15 +34,15 @@ def get_record_ip(dns_name):
 def dynamic_dns():
     # 工具
     public_ip = get_public_ip()
-    re_cord_ip = get_record_ip(DNS_NAME)
+    record_id = get_record_id(DNS_SECOND_DOMAIN)
     print('{[公网IP:' + public_ip + ']')
     client = acs_client()
     request = CommonRequest()
     request.set_domain('alidns.aliyuncs.com')
     request.set_version('2015-01-09')
     request.set_action_name('UpdateDomainRecord')
-    request.add_query_param('RecordId', re_cord_ip)
-    request.add_query_param('RR', DNS_NAME)
+    request.add_query_param('RecordId', record_id)
+    request.add_query_param('RR', DNS_SECOND_DOMAIN)
     request.add_query_param('Type', DNS_TYPE)
     request.add_query_param('Value', public_ip)
 
