@@ -13,16 +13,17 @@ ALI_ACCESS_KEY_SECRET |  阿里云 ACCESS_KEY_SECRET（必填）
 ALI_REGION_ID | 阿里云区域ID（默认：cn-hangzhou）
 DNS_TYPE | 解析类型（默认：A）
 DNS_DOMAIN | 域名（必填）
-DNS_SECOND_DOMAIN | 二级域名（默认：@）
+DNS_SUB_DOMAIN | 二级域名（默认：@）
 
 ### 环境字段说明
 
 **DNS_TYPE** 支持的解析类型：
+> 点击查看[官方详细说明](https://help.aliyun.com/document_detail/29805.html?spm=a2c4g.11186623.2.8.4d3316267Ov7hF)
 - A：将域名指向一个IPV4地址
 - CNAME：将域名指向另外一个域名
 - AAAA：将域名指向一个IPV6地址
 
-**DNS_SECOND_DOMAIN** 域名前缀，常见用法有：
+**DNS_SUB_DOMAIN** 域名前缀，常见用法有：
 
 - www：解析后的域名为www.aliyun.com。
 
