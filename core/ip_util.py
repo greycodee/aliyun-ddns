@@ -1,19 +1,22 @@
 #! /usr/bin/env python3
 # coding:utf-8
+import json
+
 import requests
 import re
+import hashlib
 
 
-# 获取Ip
-def get_public_ip():
-    return get_ip_138()
+# 获取腾讯位置 api 返回的 ip
+def get_ip_with_tencent_lbs(lbs_key, sk):
+    base_url = "https://apis.map.qq.com/ws/location/v1/ip"
+    sign_string = "/ws/location/v1/ip?key="+lbs_key+sk
+    sign = hashlib.md5(sign_string.encode(encoding='GBK')).hexdigest()
+    request_url = base_url+"?key="+lbs_key+"&sig="+sign
+    resp = requests.get(request_url).text
+    json_obj = json.loads(resp)
+    if json_obj['status'] == 0:
+        return json_obj['result']['ip']
+    else:
+        raise Exception("获取IP失败，原因："+json_obj['message'])
 
-
-def get_ip_138():
-    resp = requests.get("https://ip.qiyutech.tech/")
-    result = resp.text
-    pat = r"(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)\.(25[0-5]|2[0-4]\d|[0-1]\d{2}|[1-9]?\d)"
-    match = re.search(pat, result)
-    ip = match.group(0)
-    print(ip)
-    return ip

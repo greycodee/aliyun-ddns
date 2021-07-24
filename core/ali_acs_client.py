@@ -2,9 +2,6 @@
 # coding:utf-8
 import json
 
-from .ip_util import get_public_ip
-from .config import *
-
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.client import CommonRequest
 
@@ -40,6 +37,8 @@ class AliAcsClient(object):
         records = self.describe_domain_records(domain, sub_domain)
         return records['DomainRecords']['Record'][0]['RecordId']
 
+    # 修改解析记录
+    # https://help.aliyun.com/document_detail/29774.html?spm=a2c4g.11186623.6.677.3f401835cAGsxG
     def update_domain_record(self, domain, sub_domain, public_ip, dns_type):
         request = CommonRequest()
         request.set_domain('alidns.aliyuncs.com')
@@ -51,4 +50,5 @@ class AliAcsClient(object):
         request.add_query_param('Value', public_ip)
 
         resp = self.acs_clients.do_action_with_exception(request)
-        print(resp)
+        json_obj = json.loads(resp)
+        return json_obj

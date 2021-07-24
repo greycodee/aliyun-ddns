@@ -1,7 +1,11 @@
 # 动态域名解析（DDNS）
 
-## 运行环境
-- **python3**
+## 介绍
+本应用是基于阿里云SDK进行开发的，可以动态更新阿里云域名的DNS解析，运行环境是 `Python 3`
+
+利用[腾讯位置](https://lbs.qq.com)提供的 API 进行公网 IP 的获取，可以查看[如何获取腾讯位置的 API 密钥](doc/tencent_lbs.md)
+
+由于腾讯位置的 API 免费配额为每日 10000 次，请合理使用
 
 ## 运行前准备
 程序从环境变量中获取配置，运行前先设置环境变量
@@ -10,10 +14,12 @@
 ---- | ---
 ALI_ACCESS_KEY_ID | 阿里云 ACCESS_KEY_ID（必填）
 ALI_ACCESS_KEY_SECRET |  阿里云 ACCESS_KEY_SECRET（必填）
-ALI_REGION_ID | 阿里云区域ID（默认：cn-hangzhou）
+ALI_REGION_ID | 阿里云区域 ID（默认：cn-hangzhou）
 DNS_TYPE | 解析类型（默认：A）
 DNS_DOMAIN | 域名（必填）
 DNS_SUB_DOMAIN | 二级域名（默认：@）
+TENCENT_LBS_KEY| 腾讯位置应用 KEY
+TENCENT_LBS_SK|腾讯位置应用签名加密 SK
 
 ### 环境字段说明
 
