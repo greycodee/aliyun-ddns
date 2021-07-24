@@ -1,7 +1,7 @@
 # 动态域名解析（DDNS）
 
 ## 运行环境
-- python3
+- **python3**
 
 ## 运行前准备
 程序从环境变量中获取配置，运行前先设置环境变量
@@ -41,7 +41,7 @@ DNS_SECOND_DOMAIN | 二级域名（默认：@）
 ## 运行
 当设置好环境变量后，使用以下命令安装依赖
 ```shell
-pip3 install -r requeirments.txt
+pip install -r requeirments.txt
 ```
 安装依赖后，直接运行 `main.py`
 ```shell
