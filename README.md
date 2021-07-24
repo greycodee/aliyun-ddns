@@ -55,3 +55,35 @@ pip install -r requeirments.txt
 python main.py
 ```
 
+## 以 Docker 运行
+如果你本地没有 python 环境，可以直接使用 docker 来运行本程序
+
+先拉取镜像：
+```shell
+docker pull greycodee/aliyun-ddns
+```
+
+然后运行：
+```shell
+docker run -d -e ALI_ACCESS_KEY_ID="阿里云AK" \
+              -e ALI_ACCESS_KEY_SECRET="阿里云AKS" \
+              -e DNS_DOMAIN="你的域名" \
+              -e DNS_SUB_DOMAIN="二级域名名称" \
+              -e TENCENT_LBS_KEY="腾讯位置应用KEY" \
+              -e TENCENT_LBS_SK="腾讯位置应用签名SK" \
+              greycodee/aliyun-ddns
+```
+
+如果你想看日志的话，可以使用 `-v` 命令把 docker 容器里的 `/root/logs` 日志目录挂载出来，这里面存放着程序的运行日志
+
+## Dockerfile
+在本目录中的 **Dockerfile** 文件中，更改文件里的环境变量参数为你的数据，具体参数字段含义见上文介绍。
+更改完参数后，可以在**当前目录**使用 `docker build` 构建命令来构建你自己来镜像
+```shell
+docker build -t 设置镜像标签  .
+```
+构建完成后就可以使用命令来运行你刚才构建的镜像了
+```shell
+docker run -d 设置的镜像标签
+```
+

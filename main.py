@@ -23,7 +23,7 @@ def dynamic_dns(dns_log):
                                                    sub_domain=DNS_SUB_DOMAIN,
                                                    public_ip=public_ip,
                                                    dns_type=DNS_TYPE)
-            dns_log.info("解析设置成功:" + resp)
+            dns_log.info("解析设置成功:" + json.dumps(resp))
     except (ServerException, ClientException, RunTimeException) as e:
         dns_log.error("解析设置失败,原因：" + e.get_error_msg())
     finally:
