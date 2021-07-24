@@ -2,23 +2,18 @@
 # coding:utf-8
 from aliyunsdkcore.acs_exception.exceptions import ServerException, ClientException
 
-from utils import util
+from core.utils import util
 from aliyunsdkcore.client import CommonRequest
 from core import ali_acs_client
 import time
 import configparser
-import os
 
 
 def dynamic_dns():
-    # 获取环境变量
-    env_list = os.environ
-    for key in env_list:
-        print(key + "#######" + env_list[key])
     # 读取配置文件
     cf = configparser.ConfigParser()
     # cf.read('config.conf')
-    cf.read(env_list['DDNS'] + '/config.conf')
+    cf.read('./config.conf')
     dns_name = cf.get('dns', 'dns_name')
     ty = cf.get('dns', 'type')
     # 工具
